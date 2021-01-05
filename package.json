@@ -1,0 +1,26 @@
+{
+  "name": "api_clean_architecture",
+  "version": "1.0.0",
+  "description": "Template for clean architecture",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodentskie/api_clean_architecture.git"
+  },
+  "author": "Rodney Lingganay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodentskie/api_clean_architecture/issues"
+  },
+  "homepage": "https://github.com/rodentskie/api_clean_architecture#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}

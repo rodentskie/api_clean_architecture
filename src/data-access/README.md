@@ -1,0 +1,1 @@
+# in this folder you will make the connection to the DB and its query
