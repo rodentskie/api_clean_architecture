@@ -18,10 +18,8 @@ const server = app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}.`);
 });
 
-
-
 // routes
-// app.use("/bp-api/employees", require("./routes/employees/app"));
+app.use("/api/employees", require("./routes/employees/app"));
 
 // when invalid routes are entered
 app.use(async (req, res) => {
@@ -29,5 +27,3 @@ app.use(async (req, res) => {
 });
 
 module.exports = app;
-
-
