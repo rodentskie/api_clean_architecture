@@ -1,9 +1,15 @@
-const { employeeAdds } = require("../../controller/employees/app");
+const {
+  employeeAdds,
+  employeesSelects,
+  employeesUpdates,
+  employeesDeletes,
+} = require("../../controller/employees/app");
 
 const route = ({ router, makeExpressCallback, validateAuth }) => {
   // #####
   // GET
-
+  router.get("/", validateAuth, makeExpressCallback(employeesSelects));
+  router.get("/:id", validateAuth, makeExpressCallback(employeesSelects));
   // #####
   // POST
 
@@ -12,6 +18,14 @@ const route = ({ router, makeExpressCallback, validateAuth }) => {
 
   // #####
   // PATCH
+
+  // update employee
+  router.patch("/:id", validateAuth, makeExpressCallback(employeesUpdates));
+
+  // #####
+  // DELETE
+
+  router.delete("/:id", validateAuth, makeExpressCallback(employeesDeletes));
 
   return router;
 };

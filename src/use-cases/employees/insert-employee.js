@@ -9,7 +9,9 @@ const addEmployee = ({ makeEmployees, employeesDb }) => {
     };
 
     // to do checking if name already exist
-
+    const check = await employeesDb.checkNameExist({ data });
+    if (check.rowCount > 0)
+      throw new Error(`Employee already exist, please check.`);
     //   insert
     const res = await employeesDb.insertNewEmployee({ data });
 
