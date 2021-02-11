@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/rodentskie/api_clean_architecture#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "basic-auth": "^2.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

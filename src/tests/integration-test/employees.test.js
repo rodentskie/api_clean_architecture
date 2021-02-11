@@ -5,20 +5,14 @@ beforeAll(() => {
   process.env.NODE_ENV = "test";
 });
 
-// require functions on employees
-const {
-  addEmployees,
-  selectEmployees,
-  updateEmployees,
-  deleteEmployees,
-} = require("../../use-cases/employees/app");
+const routes = require("./employees"); // routes to be tested
 
 describe(`Employees Tests Suites`, () => {
   test(`Select Employees`, async () => {
     try {
-      const info = {};
-      const res = await selectEmployees(info);
-      expect(res).toBeDefined();
+      const res = await routes.selectEmployees();
+      const data = res.status;
+      expect(data).toBe(200);
     } catch (e) {
       console.log("Error: ", e);
     }
@@ -35,10 +29,11 @@ describe(`Employees Tests Suites`, () => {
           length: 12,
           charset: "alphabetic",
         }), // generate random string
-        age: 8,
+        age: 13,
       };
-      const res = await addEmployees(info);
-      expect(res).toBe(`Employee has been added successfully.`);
+      const res = await routes.addEmployees({ info });
+      const data = res.status;
+      expect(data).toBe(201);
     } catch (e) {
       console.log(`Error: `, e);
     }
@@ -54,22 +49,20 @@ describe(`Employees Tests Suites`, () => {
         lastName: null,
         age: 8,
       };
-      await addEmployees(info);
+      const res = await routes.addEmployees({ info });
+      const data = res.response.status;
+      expect(data).toBe(400);
     } catch (e) {
-      expect(e.toString()).toBe("Error: Please enter last name.");
+      console.log(`Error: `, e);
     }
   });
 
   test(`Update Employees - All fields have value.`, async () => {
     try {
-      // select last added
-      const info = {};
-      const emp = await selectEmployees(info);
-      const employee = emp[emp.length - 1];
-      const employeeId = employee.id;
-
-      const data = {
-        id: employeeId,
+      const emp = await routes.selectEmployees();
+      const employees = emp.data.view;
+      const id = employees[employees.length - 1].id;
+      const info = {
         firstName: randomstring.generate({
           length: 12,
           charset: "alphabetic",
@@ -81,8 +74,9 @@ describe(`Employees Tests Suites`, () => {
         age: 9,
       };
 
-      const res = await updateEmployees(data);
-      expect(res).toBe(`Employee updated successfully.`);
+      const res = await routes.updateEmployees({ id, info });
+      const data = res.status;
+      expect(data).toBe(200);
     } catch (e) {
       console.log("Error: ", e);
     }
@@ -90,14 +84,10 @@ describe(`Employees Tests Suites`, () => {
 
   test(`Update Employees - Required fields are missing.`, async () => {
     try {
-      // select last added
-      const info = {};
-      const emp = await selectEmployees(info);
-      const employee = emp[emp.length - 1];
-      const employeeId = employee.id;
-
-      const data = {
-        id: employeeId,
+      const emp = await routes.selectEmployees();
+      const employees = emp.data.view;
+      const id = employees[employees.length - 1].id;
+      const info = {
         firstName: null,
         lastName: randomstring.generate({
           length: 12,
@@ -106,26 +96,23 @@ describe(`Employees Tests Suites`, () => {
         age: 9,
       };
 
-      await updateEmployees(data);
+      const res = await routes.updateEmployees({ id, info });
+      const data = res.response.status;
+      expect(data).toBe(400);
     } catch (e) {
-      expect(e.toString()).toBe("Error: Please enter first name.");
+      console.log("Error: ", e);
     }
   });
 
-  test(`Delete Employees.`, async () => {
+  test(`Delete Employees`, async () => {
     try {
-      // select last added
-      const info = {};
-      const emp = await selectEmployees(info);
-      const employee = emp[emp.length - 1];
-      const employeeId = employee.id;
+      const emp = await routes.selectEmployees();
+      const employees = emp.data.view;
+      const id = employees[employees.length - 1].id;
 
-      const data = {
-        id: employeeId,
-      };
-
-      const res = await deleteEmployees(data);
-      expect(res).toBe(`Employee deleted successfully.`);
+      const res = await routes.deleteEmployees({ id });
+      const data = res.status;
+      expect(data).toBe(200);
     } catch (e) {
       console.log("Error: ", e);
     }
