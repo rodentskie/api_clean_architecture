@@ -130,4 +130,22 @@ describe(`Employees Tests Suites`, () => {
       console.log("Error: ", e);
     }
   });
+
+  test(`Delete Employees doesn't exist.`, async () => {
+    try {
+      // select last added
+      const info = {};
+      const emp = await selectEmployees(info);
+      const employee = emp[emp.length - 1];
+      const employeeId = employee.id;
+      const data = {
+        id: parseInt(employeeId) + 10, // id that never exist
+      };
+      await deleteEmployees(data);
+    } catch (e) {
+      expect(e.toString()).toBe(
+        "Error: Employee was not deleted, please try again."
+      );
+    }
+  });
 });

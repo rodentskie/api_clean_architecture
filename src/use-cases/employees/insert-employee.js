@@ -18,9 +18,12 @@ const addEmployee = ({ makeEmployees, employeesDb }) => {
     // ##
     let msg = `Error on inserting employee, please try again.`;
 
-    if (res) msg = `Employee has been added successfully.`;
-
-    return msg;
+    if (res) {
+      msg = `Employee has been added successfully.`;
+      return msg;
+    } else {
+      throw new Error(msg);
+    }
   };
 };
 

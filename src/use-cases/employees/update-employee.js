@@ -23,8 +23,12 @@ const updateEmployee = ({ employeesDb, patchEmployees }) => {
     const res = await employeesDb.patchEmployee({ data });
 
     let msg = `Employee was not updated, please try again`;
-    if (res[0] == 1) msg = `Employee updated successfully.`;
-    return msg;
+    if (res[0] == 1) {
+      msg = `Employee updated successfully.`;
+      return msg;
+    } else {
+      throw new Error(msg);
+    }
   };
 };
 
