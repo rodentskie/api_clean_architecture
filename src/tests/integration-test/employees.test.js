@@ -91,6 +91,6 @@ describe(`Employees Tests Suites`, () => {
 
     const res = await routes.deleteEmployees({ id });
     const data = res.status;
-    expect(data).toBe(202);
+    expect(data).toBe(200);
   });
 });
