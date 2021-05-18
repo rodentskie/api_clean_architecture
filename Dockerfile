@@ -4,7 +4,7 @@ COPY package*.json ./
 
 USER root
 
-RUN npm install
+RUN npm install --only-prod
 COPY . .
 EXPOSE 2001
 
