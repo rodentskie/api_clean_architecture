@@ -108,7 +108,7 @@ describe(`Employees Tests Suites`, () => {
 
       await updateEmployees(data);
     } catch (e) {
-      expect(e.toString()).toBe("Error: Please enter first name.");
+      expect(e.toString()).toBe("Error: Please enter first names.");
     }
   });
 
