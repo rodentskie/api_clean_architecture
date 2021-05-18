@@ -1,6 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
-const url = `${process.env.BASE_URL}:${process.env.PORT}`;
+const url = `${process.env.BASE_URL}:${process.env.TEST_PORT}`;
 
 const routes = {
   selectEmployees: async () => {
