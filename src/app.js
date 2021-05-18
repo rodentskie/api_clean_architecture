@@ -26,6 +26,6 @@ app.use(async (req, res) => {
   res.status(404).send(`Route is no where to be found.`);
 });
 
-console.log(`testing cicd`);
+console.log(`testing cicd 2nd test`);
 
 module.exports = app;
