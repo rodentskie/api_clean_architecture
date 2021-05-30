@@ -1,10 +1,10 @@
 const dotenv = require("dotenv");
-const pg = require("pg");
+const mg = require("mongoose");
 
 // ##############
 const connect = require("./connection");
 // ##############
-const connects = connect({ dotenv, pg });
+const connects = connect({ dotenv, mg });
 // ##############
 const services = Object.freeze({ connects });
 

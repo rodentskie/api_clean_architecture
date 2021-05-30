@@ -4,6 +4,8 @@ const selectEmployee = ({ employeesDb, decrypt }) => {
 
     const { id } = info; // deconstruct
 
+    const res = await employeesDb.selectAll({});
+    /*
     if (id) {
       // select one
       const res = await employeesDb.selectOne({ id });
@@ -45,6 +47,7 @@ const selectEmployee = ({ employeesDb, decrypt }) => {
         }
       }
     }
+    */
     return data;
   };
 };

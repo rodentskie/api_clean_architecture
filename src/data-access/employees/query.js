@@ -1,4 +1,4 @@
-const query = ({ connects, models }) => {
+const query = ({ connects, employeeModels }) => {
   return Object.freeze({
     insertNewEmployee,
     checkNameExist,
@@ -60,16 +60,14 @@ const query = ({ connects, models }) => {
 
   async function selectAll({}) {
     try {
-      const pool = await connects();
+      const mySchema = await employeeModels();
+      const conn = await connects();
+      const myModel = conn.model("Employee", mySchema);
 
-      const res = await new Promise((resolve) => {
-        const sql = `SELECT * FROM "Employees";`;
-        pool.query(sql, (err, res) => {
-          pool.end(); // end connection
+      const res = myModel.find({}, function (err, docs) {
+        if (err) return console.log(err);
 
-          if (err) resolve(err);
-          resolve(res);
-        });
+        console.log(docs);
       });
 
       return res;

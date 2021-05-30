@@ -1,33 +1,26 @@
 // connection to database;
-const connect = ({ dotenv, pg }) => {
+const connect = ({ dotenv, mg }) => {
   return async function conn() {
     dotenv.config();
-    const { Pool } = pg;
+
     let config = null;
     const env = process.env.NODE_ENV;
     if (env == `development` || env == `production`) {
-      config = {
-        user: process.env.PGUSER,
-        database: process.env.PGDATABASE,
-        password: process.env.PGPASSWORD,
-        port: process.env.PGPORT,
-        host: process.env.PGHOST,
-      };
+      config = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
     }
 
     if (env == `test`) {
-      config = {
-        user: process.env.PGUSER,
-        database: process.env.PGDATABASE_TEST,
-        password: process.env.PGPASSWORD,
-        port: process.env.PGPORT,
-        host: process.env.PGHOST,
-      };
+      config = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_TEST}`;
     }
 
-    const pool = new Pool(config);
+    const conn = await mg.connect(config, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    });
 
-    return pool;
+    return conn;
   };
 };
 

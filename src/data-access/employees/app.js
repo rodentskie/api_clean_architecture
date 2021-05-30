@@ -1,9 +1,11 @@
 const { connects } = require("../app");
-const models = require("../sequelize/models");
+const { employeeModels } = require("../models/app");
+const mg = require("mongoose");
+
 // ######
 const query = require("./query");
 // ######
-const employeesDb = query({ connects, models });
+const employeesDb = query({ connects, mg, employeeModels });
 // ######
 
 module.exports = employeesDb;
