@@ -20,7 +20,5 @@ To use:
 
 # Globally packages I installed
 
-    * ts-node
     * prettier
-    * typescript
     * nodemon
