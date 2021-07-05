@@ -11,6 +11,7 @@ const query = ({ connects, models }) => {
 
   async function deleteEmployee({ id }) {
     try {
+      console.log("data", id);
       // use sequelize on inserting
       const Employee = models.Employee;
       const res = await Employee.destroy({
