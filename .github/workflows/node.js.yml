@@ -39,7 +39,7 @@ jobs:
       PGDATABASE: clean_api
       PGPASSWORD: secret
       PGPORT: 5432
-      PGHOST: postgres
+      PGHOST: localhost
       ALGORITHM: aes-256-gcm
       ENCRYPTION_KEY: 3zTvzr3p67VC61jmV54rIYu1545x4TlY
       IV: 60iP0h6vJoEa
