@@ -37,6 +37,7 @@ jobs:
       NODE_ENV: development
       PGUSER: root
       PGDATABASE: clean_api
+      PGDATABASE_TEST: clean_api
       PGPASSWORD: secret
       PGPORT: 5432
       PGHOST: localhost

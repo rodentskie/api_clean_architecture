@@ -4,7 +4,6 @@ const randomstring = require("randomstring"); // for random string insert and up
 beforeAll(() => {
   process.env.NODE_ENV = "test";
 });
-
 // require functions on employees
 const {
   addEmployees,
@@ -100,21 +99,6 @@ describe(`Employees Tests Suites`, () => {
     }
   });
 
-  test(`Delete Employees.`, async () => {
-    // select last added
-    const info = {};
-    const emp = await selectEmployees(info);
-    const employee = emp[emp.length - 1];
-    const employeeId = employee.id;
-
-    const data = {
-      id: employeeId,
-    };
-
-    const res = await deleteEmployees(data);
-    expect(res).toBe(`Employee deleted successfully.`);
-  });
-
   test(`Delete Employees doesn't exist.`, async () => {
     try {
       // select last added
@@ -131,5 +115,20 @@ describe(`Employees Tests Suites`, () => {
         "Error: Employee was not deleted, please try again."
       );
     }
+  });
+
+  test(`Delete Employees.`, async () => {
+    // select last added
+    const info = {};
+    const emp = await selectEmployees(info);
+    const employee = emp[emp.length - 1];
+    const employeeId = employee.id;
+
+    const data = {
+      id: employeeId,
+    };
+
+    const res = await deleteEmployees(data);
+    expect(res).toBe(`Employee deleted successfully.`);
   });
 });
