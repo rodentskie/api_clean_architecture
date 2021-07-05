@@ -79,9 +79,9 @@ jobs:
       run: npx sequelize-cli db:migrate
     - name: unit test
       run: npm run utest
-    - name: start api
-      run: npm start
-        env:
-          CI: true
-    - name: integration testing
-      run: npm run itest
+    - name: start api and integration testing
+      run: |
+        npm start
+        npm run itest
+      env:
+        CI: true
