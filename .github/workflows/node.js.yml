@@ -46,6 +46,8 @@ jobs:
       IV: 60iP0h6vJoEa
       name: rod
       pass: qwerty
+      BASE_URL: http://localhost
+      TEST_PORT: 2001
     strategy:
       matrix:
         node-version: [14.17.3]
@@ -74,3 +76,4 @@ jobs:
     - run: npm ci
     - run: npx sequelize-cli db:migrate
     - run: npm run utest
+    - run: npm run itest
