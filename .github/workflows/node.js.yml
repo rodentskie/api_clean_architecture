@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     # needs: env # need env file to run test
     env:
-      NODE_ENV: testings
+      NODE_ENV: test
     strategy:
       matrix:
         node-version: [14.17.3]
