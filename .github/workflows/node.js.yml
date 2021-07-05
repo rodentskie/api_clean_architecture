@@ -8,30 +8,30 @@ on:
     branches: [ main ]
 
 jobs:
-  env:
+  # env:
  
-    runs-on: ubuntu-18.04
+  #   runs-on: ubuntu-18.04
  
-    steps:
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1
-      with:
-        PORT: 2001
-        NODE_ENV: development
-        PGUSER: root
-        PGDATABASE: clean_api
-        PGPASSWORD: secret
-        PGPORT: 5432
-        PGHOST: postgres
-        ALGORITHM: aes-256-gcm
-        ENCRYPTION_KEY: 3zTvzr3p67VC61jmV54rIYu1545x4TlY
-        IV: 60iP0h6vJoEa
-        name: rod
-        pass: qwerty
+  #   steps:
+  #   - name: Make envfile
+  #     uses: SpicyPizza/create-envfile@v1
+  #     with:
+  #       PORT: 2001
+  #       NODE_ENV: development
+  #       PGUSER: root
+  #       PGDATABASE: clean_api
+  #       PGPASSWORD: secret
+  #       PGPORT: 5432
+  #       PGHOST: postgres
+  #       ALGORITHM: aes-256-gcm
+  #       ENCRYPTION_KEY: 3zTvzr3p67VC61jmV54rIYu1545x4TlY
+  #       IV: 60iP0h6vJoEa
+  #       name: rod
+  #       pass: qwerty
 
   build:
     runs-on: ubuntu-latest
-    needs: env # need env file to run test
+    # needs: env # need env file to run test
     strategy:
       matrix:
         node-version: [14.17.3]
@@ -57,6 +57,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+      env:
+          NODE_ENV: testings
     - run: npm ci
     - run: npx sequelize-cli db:migrate
     - run: npm run utest
