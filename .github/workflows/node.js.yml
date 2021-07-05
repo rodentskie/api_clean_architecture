@@ -57,6 +57,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npx sequelize-cli db:migrate
     - run: npm ci
+    - run: npx sequelize-cli db:migrate
     - run: npm run utest
