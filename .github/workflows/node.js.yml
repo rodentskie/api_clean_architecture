@@ -80,11 +80,8 @@ jobs:
     - name: unit test
       run: npm run utest
     - name: start api
-      run: npm start
+      run: 'npm start & npx wait-on ${{ env.BASE_URL }}:${{ env.TEST_PORT }}'
       env:
         CI: true
-    # - run: npm ci
-    # - run: npx sequelize-cli db:migrate
-    # - run: npm run utest
-    # - run: npm start
-    # - run: npm run itest
+    - name: integration testing
+      run: npm run itest
