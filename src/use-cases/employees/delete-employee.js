@@ -1,5 +1,6 @@
 const deleteEmployee = ({ employeesDb }) => {
   return async function select(info) {
+    console.log(info);
     const { id } = info;
 
     // delete query
