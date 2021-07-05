@@ -8,34 +8,6 @@ on:
     branches: [ main ]
 
 jobs:
-  # Label of the container job
-  pg:
-    runs-on: ubuntu-latest
-    container: node:10.18-jessie
-
-    # Service containers to run with
-    services:
-      # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_PASSWORD: admin
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    steps:
-      - name: Start to PostgreSQL
-        env:
-          # The hostname used to communicate with the PostgreSQL service container
-          POSTGRES_HOST: postgres
-          # The default PostgreSQL port
-          POSTGRES_PORT: 5432
-
   build:
 
     runs-on: ubuntu-latest
@@ -43,7 +15,21 @@ jobs:
     strategy:
       matrix:
         node-version: [14.17.3]
-    needs: pg # need running database
+    # pg db
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: clean_api
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
