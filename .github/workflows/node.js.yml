@@ -80,8 +80,6 @@ jobs:
     - name: unit test
       run: npm run utest
     - name: start api and integration testing
-      run: |
-        npm start
-        npm run itest
+      run: npm start & npm run itest
       env:
         CI: true
