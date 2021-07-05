@@ -48,6 +48,7 @@ jobs:
       pass: qwerty
       BASE_URL: http://localhost
       TEST_PORT: 2001
+      CI: true
     strategy:
       matrix:
         node-version: [14.17.3]
