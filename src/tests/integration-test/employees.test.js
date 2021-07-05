@@ -28,7 +28,7 @@ describe(`Employees Tests Suites`, () => {
     };
     const res = await routes.addEmployees({ info });
     const data = res.status;
-    expect(data).toBe(202);
+    expect(data).toBe(201);
   });
 
   test(`Add Employees - Required fields missing.`, async () => {
