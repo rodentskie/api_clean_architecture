@@ -76,4 +76,5 @@ jobs:
     - run: npm ci
     - run: npx sequelize-cli db:migrate
     - run: npm run utest
+    - run: npm start
     - run: npm run itest
