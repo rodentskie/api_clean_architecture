@@ -73,13 +73,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: npm install, create database, unit test, start and integration test
-      run: |
-        npm ci
-        npx sequelize-cli db:migrate
-        npm run utest
-        npm start
-        npm run itest
+    - name: npm install
+      run: npm ci
+    - name: create database
+      run: npx sequelize-cli db:migrate
+    - name: unit test
+      run: npm run utest
+    - name: start api
+      run: npm start
       env:
         CI: true
     # - run: npm ci
