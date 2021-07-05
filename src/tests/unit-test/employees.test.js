@@ -15,33 +15,25 @@ const {
 
 describe(`Employees Tests Suites`, () => {
   test(`Select Employees`, async () => {
-    try {
-      const info = {};
-      const res = await selectEmployees(info);
-      expect(res).toBeDefined();
-    } catch (e) {
-      console.log("Error: ", e);
-    }
+    const info = {};
+    const res = await selectEmployees(info);
+    expect(res).toBeDefined();
   });
 
   test(`Add Employees - All fields have value.`, async () => {
-    try {
-      const info = {
-        firstName: randomstring.generate({
-          length: 12,
-          charset: "alphabetic",
-        }), // generate random string
-        lastName: randomstring.generate({
-          length: 12,
-          charset: "alphabetic",
-        }), // generate random string
-        age: 8,
-      };
-      const res = await addEmployees(info);
-      expect(res).toBe(`Employee has been added successfully.`);
-    } catch (e) {
-      console.log(`Error: `, e);
-    }
+    const info = {
+      firstName: randomstring.generate({
+        length: 12,
+        charset: "alphabetic",
+      }), // generate random string
+      lastName: randomstring.generate({
+        length: 12,
+        charset: "alphabetic",
+      }), // generate random string
+      age: 8,
+    };
+    const res = await addEmployees(info);
+    expect(res).toBe(`Employee has been added successfully.`);
   });
 
   test(`Add Employees - Required fields missing.`, async () => {
@@ -61,31 +53,27 @@ describe(`Employees Tests Suites`, () => {
   });
 
   test(`Update Employees - All fields have value.`, async () => {
-    try {
-      // select last added
-      const info = {};
-      const emp = await selectEmployees(info);
-      const employee = emp[emp.length - 1];
-      const employeeId = employee.id;
+    // select last added
+    const info = {};
+    const emp = await selectEmployees(info);
+    const employee = emp[emp.length - 1];
+    const employeeId = employee.id;
 
-      const data = {
-        id: employeeId,
-        firstName: randomstring.generate({
-          length: 12,
-          charset: "alphabetic",
-        }), // generate random string
-        lastName: randomstring.generate({
-          length: 12,
-          charset: "alphabetic",
-        }), // generate random string
-        age: 9,
-      };
+    const data = {
+      id: employeeId,
+      firstName: randomstring.generate({
+        length: 12,
+        charset: "alphabetic",
+      }), // generate random string
+      lastName: randomstring.generate({
+        length: 12,
+        charset: "alphabetic",
+      }), // generate random string
+      age: 9,
+    };
 
-      const res = await updateEmployees(data);
-      expect(res).toBe(`Employee updated successfully.`);
-    } catch (e) {
-      console.log("Error: ", e);
-    }
+    const res = await updateEmployees(data);
+    expect(res).toBe(`Employee updated successfully.`);
   });
 
   test(`Update Employees - Required fields are missing.`, async () => {
@@ -113,22 +101,18 @@ describe(`Employees Tests Suites`, () => {
   });
 
   test(`Delete Employees.`, async () => {
-    try {
-      // select last added
-      const info = {};
-      const emp = await selectEmployees(info);
-      const employee = emp[emp.length - 1];
-      const employeeId = employee.id;
+    // select last added
+    const info = {};
+    const emp = await selectEmployees(info);
+    const employee = emp[emp.length - 1];
+    const employeeId = employee.id;
 
-      const data = {
-        id: employeeId,
-      };
+    const data = {
+      id: employeeId,
+    };
 
-      const res = await deleteEmployees(data);
-      expect(res).toBe(`Employee deleted successfully.`);
-    } catch (e) {
-      console.log("Error: ", e);
-    }
+    const res = await deleteEmployees(data);
+    expect(res).toBe(`Employee deleted successfully.`);
   });
 
   test(`Delete Employees doesn't exist.`, async () => {
