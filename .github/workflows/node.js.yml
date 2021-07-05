@@ -48,7 +48,6 @@ jobs:
       pass: qwerty
       BASE_URL: http://localhost
       TEST_PORT: 2001
-      CI: true
     strategy:
       matrix:
         node-version: [14.17.3]
@@ -78,4 +77,6 @@ jobs:
     - run: npx sequelize-cli db:migrate
     - run: npm run utest
     - run: npm start
+      env:
+        CI: true
     - run: npm run itest
