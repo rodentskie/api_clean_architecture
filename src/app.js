@@ -21,6 +21,8 @@ const server = app.listen(PORT, () => {
 // routes
 app.use("/api/employees", require("./routes/employees/app"));
 
+console.log('test');
+
 // when invalid routes are entered
 app.use(async (req, res) => {
   res.status(404).send(`Route is no where to be found.`);
