@@ -62,6 +62,7 @@ jobs:
       run: npm start & npm run itest
       env:
         CI: true
+    - run: bash scripts/check_file.sh
     - name: Check mobile text file exist
       id: check_txt
       run: echo '::set-output name=CHECK_RESULT::'$(bash scripts/check_file.sh)''
