@@ -67,6 +67,6 @@ jobs:
       id: check_txt
       run: echo '::set-output name=CHECK_RESULT::'$(bash scripts/check_file.sh)''
     - name: "Show Alert!"
-      if: ${{ steps.check_txt.outputs.CHECK_RESULT }} === 'true'
-        run: echo 'Text file exist!'
+      if: ${{ steps.check_txt.outputs.CHECK_RESULT == 'true' }}
+      run: echo 'Text file exist!'
     - run: echo ${{ steps.check_txt.outputs.CHECK_RESULT }}
