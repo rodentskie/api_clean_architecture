@@ -55,9 +55,6 @@ jobs:
     - name: Check mobile text file exist
       id: check_txt
       run: echo '::set-output name=CHECK_RESULT::'$(bash scripts/check_file.sh)''
-    - name: "Show Alert!"
-      if: ${{ steps.check_txt.outputs.CHECK_RESULT }} == 'true'
-      run: echo 'Text file exist!'
     - name: npm install
       run: npm ci
     - name: create database
